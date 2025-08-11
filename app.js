@@ -14,7 +14,7 @@ function agregarAmigo(){
         Lista.push(Amigo);
         console.log(Lista);
 
-        MostrarLista();
+        MostrarLista(); 
 
         limpiarbox();
     }
@@ -38,5 +38,10 @@ function limpiarbox(){
 }
 
 function sortearAmigo(){
-
+    console.log(Lista.length)
+ if (Lista.length<3){
+     alert('No es posible realizar el sorteo con menos de 3 nombre ingresados')
+ }else{
+    alert ('Pendiente')
+ }
 }
