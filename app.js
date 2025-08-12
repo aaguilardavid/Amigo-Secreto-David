@@ -70,6 +70,7 @@ function sortearAmigo(){
     //console.log(Lista.length)    
  if (Lista.length<3){
      alert('Se necesitan al menos 3 nombre ingresados para hacer un sorte válido')
+     MostrarLista();
  }else{
    
     if (ListaSorteados.length==Lista.length){
