@@ -2,6 +2,7 @@
 let Lista=[];
 let AmigoSorteado='';
 let ListaSorteados=[];
+let AmigoSeleccionado=0;
 
 function asignarTextoElemento(elemento,texto){
     let elementoHTML= document.querySelector(elemento);
@@ -11,6 +12,10 @@ function asignarTextoElemento(elemento,texto){
 function agregarAmigo(){
     
     let Amigo= document.getElementById('amigo').value;
+if (ListaSorteados.length>0){
+        alert('Sorteo iniciado, no es posible agregar mas nombres')
+        limpiarbox();
+    } else{
     if(Amigo.trim().length>0){
         Lista.push(Amigo);
         console.log(Lista);
@@ -24,6 +29,7 @@ function agregarAmigo(){
         limpiarbox();
     }
 }
+}
 
 function MostrarLista(){
     let ListaAmigos= document.getElementById('listaAmigos');
@@ -34,12 +40,30 @@ function MostrarLista(){
 
 }
 
+function MostrarListaSel(){
+    let ListaAmigos=document.getElementById('listaAmigos');
+    for (i=0; i<Lista.length ; i++){
+        if (ListaSorteados.includes(i)){
+        ListaAmigos.innerHTML+=`<li>${Lista[i]}: Sorteado<li>`
+        }else{
+        ListaAmigos.innerHTML+=`<li>${Lista[i]}<li>`
+        }
+    }
+
+}
+
 function limpiarbox(){
     valorbox=document.querySelector('#amigo').value='';
 }
 
+function borrarlista(){
+    let ListaAmigos=document.getElementById('listaAmigos');
+        ListaAmigos.innerHTML=''
+}
+
 function sortearAmigo(){
-    let AmigoSeleccionado= Math.floor(Math.random()*Lista.length);
+    borrarlista();
+   AmigoSeleccionado= Math.floor(Math.random()*Lista.length);
     
     //Arreglo para guardar los números de indice de los amigos seleccionados
     console.log(AmigoSeleccionado);
@@ -49,20 +73,30 @@ function sortearAmigo(){
  }else{
    
     if (ListaSorteados.length==Lista.length){
-        asignarTextoElemento('h2','Se han sorteado todos los nombres disponibles')
+        MostrarResultado();
+        //asignarTextoElemento('h2','Se han sorteado todos los nombres ingresado')
     }
     else{
         if (ListaSorteados.includes(AmigoSeleccionado)){
         sortearAmigo();
             
         } else{
-            let Resultado= document.getElementById('resultado');
-            Resultado.innerHTML= Lista[AmigoSeleccionado];
+            MostrarResultado();
             ListaSorteados.push(AmigoSeleccionado);
+            MostrarListaSel();
             console.log(ListaSorteados);
         }
 
     }
-    
  }
+}
+
+
+function MostrarResultado(){
+    let Resultado= document.getElementById('resultado');
+    if (ListaSorteados.length==Lista.length){
+        Resultado.innerHTML='Se han sorteado todos los nombres ingresados'
+        }else{
+    Resultado.innerHTML= `El amigo secreto sorteado es: ${Lista[AmigoSeleccionado]}`;
+        }
 }
