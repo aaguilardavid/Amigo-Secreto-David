@@ -1,6 +1,7 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let Lista=[];
 let AmigoSorteado='';
+let ListaSorteados=[];
 
 function asignarTextoElemento(elemento,texto){
     let elementoHTML= document.querySelector(elemento);
@@ -38,10 +39,13 @@ function limpiarbox(){
 }
 
 function sortearAmigo(){
-    console.log(Lista.length)
+    let AmigoSeleccionado= Math.floor(Math.random()*Lista.length);
+    console.log(AmigoSeleccionado);
+    console.log(Lista.length)    
  if (Lista.length<3){
-     alert('No es posible realizar el sorteo con menos de 3 nombre ingresados')
+     alert('Se necesitan al menos 3 nombre ingresados para hacer un sorte válido')
  }else{
-    alert ('Pendiente')
+    let Resultado= document.getElementById('resultado');
+    Resultado.innerHTML= Lista[AmigoSeleccionado];
  }
 }
