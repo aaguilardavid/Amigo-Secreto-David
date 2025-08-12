@@ -40,12 +40,29 @@ function limpiarbox(){
 
 function sortearAmigo(){
     let AmigoSeleccionado= Math.floor(Math.random()*Lista.length);
+    
+    //Arreglo para guardar los números de indice de los amigos seleccionados
     console.log(AmigoSeleccionado);
-    console.log(Lista.length)    
+    //console.log(Lista.length)    
  if (Lista.length<3){
      alert('Se necesitan al menos 3 nombre ingresados para hacer un sorte válido')
  }else{
-    let Resultado= document.getElementById('resultado');
-    Resultado.innerHTML= Lista[AmigoSeleccionado];
+   
+    if (ListaSorteados.length==Lista.length){
+        asignarTextoElemento('h2','Se han sorteado todos los nombres disponibles')
+    }
+    else{
+        if (ListaSorteados.includes(AmigoSeleccionado)){
+        sortearAmigo();
+            
+        } else{
+            let Resultado= document.getElementById('resultado');
+            Resultado.innerHTML= Lista[AmigoSeleccionado];
+            ListaSorteados.push(AmigoSeleccionado);
+            console.log(ListaSorteados);
+        }
+
+    }
+    
  }
 }
